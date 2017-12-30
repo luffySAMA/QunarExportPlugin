@@ -1,0 +1,14 @@
+{
+  "name": "去哪儿导出插件",
+  "description": "导出去哪儿网的航班查询结果",
+  "version": "1.0",
+  "permissions": ["declarativeContent"],
+  "page_action": {
+    "default_icon": "assets/qunar.png",
+    "default_title": "导出结果"
+  },
+  "background": {
+    "scripts": ["js/background.js"]
+  },
+  "manifest_version": 2
+}
