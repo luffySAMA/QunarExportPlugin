@@ -17,5 +17,10 @@ chrome.runtime.onInstalled.addListener(() => {
  * 添加按钮点击事件
  */
 chrome.pageAction.onClicked.addListener(() => {
-  alert(1);
+  // 向content-script发送下载的命令
+  chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
+    chrome.tabs.sendMessage(tabs[0].id, { action: 'download' }, function(response) {
+      console.log(response.farewell);
+    });
+  });
 });

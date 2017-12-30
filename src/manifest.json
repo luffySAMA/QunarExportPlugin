@@ -1,5 +1,5 @@
 {
-  "name": "去哪儿导出插件",
+  "name": "去哪儿航班导出插件",
   "description": "导出去哪儿网的航班查询结果",
   "version": "1.0",
   "permissions": ["declarativeContent"],
@@ -8,7 +8,14 @@
     "default_title": "导出结果"
   },
   "background": {
-    "scripts": ["js/background.js"]
+    "scripts": ["js/background.js"],
+    "persistence": false
   },
+  "content_scripts": [
+    {
+      "matches": ["http://*.qunar.com/*", "https://*.qunar.com/*"],
+      "js": ["js/FileSaver.min.js", "js/flight-info.js", "js/flight-info-element.js", "js/content-script.js"]
+    }
+  ],
   "manifest_version": 2
 }
