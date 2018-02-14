@@ -1,7 +1,7 @@
 /**
  * 航班信息的DOM结构信息
  */
-class FlightInfoElement {
+class FlightCreator {
   constructor(root) {
     this.init();
     if (root == undefined) {
@@ -13,7 +13,7 @@ class FlightInfoElement {
 
   createFlightInfo() {
     this.flightInfo = new FlightInfo();
-    for (var propName in this.flightInfo) {
+    for (let propName in this.flightInfo) {
       // this.propName 存的值是选择器
       let selector = this[propName];
       // 用selector到this.root中去找，返回的就是航班的信息
@@ -25,19 +25,19 @@ class FlightInfoElement {
     /**
      * 起飞机场
      */
-    this.fromAirport = ['.col-time .sep-lf .airport span'];
+    this.fromAirport = '.right div+div';
     /**
      * 到达机场
      */
-    this.toAirport = ['.col-time .sep-rt .airport span'];
+    this.toAirport = '.left div+div';
     /**
      * 航空公司
      */
-    this.airline = '.col-airline .air span';
+    this.airline = '.logo .flight_logo';
     /**
      * 航班编号
      */
-    this.flightNum = '.col-airline .num .n';
+    this.flightNum = '.logo .flight_logo+span';
     /**
      * 机型
      */
@@ -70,15 +70,15 @@ class FlightInfoElement {
     /**
      * 中转航班
      */
-    this.middleFlight = new MiddleFlightInfoElement();
+    this.middleFlight = new MiddleFlightCreator();
 
     /**
      * 经停
      */
-    this.stoppedFlight = new StoppedFlightInfoElement();
+    this.stoppedFlight = new StoppedFlightCreator();
   }
 }
-class MiddleFlightInfoElement {
+class MiddleFlightCreator {
   constructor(root) {
     this.init();
     if (root == undefined) {
@@ -90,7 +90,7 @@ class MiddleFlightInfoElement {
 
   createMiddleFlightInfo() {
     this.middleFlightInfo = new MiddleFlightInfo();
-    for (var propName in this.middleFlightInfo) {
+    for (let propName in this.middleFlightInfo) {
       // this.propName 存的值是选择器
       let selector = this[propName];
       // 用selector到this.root中去找，返回的就是航班的信息
@@ -125,7 +125,7 @@ class MiddleFlightInfoElement {
     this.middleEndTime = '';
   }
 }
-class StoppedFlightInfoElement {
+class StoppedFlightCreator {
   constructor(root) {
     this.init();
     if (root == undefined) {
@@ -137,7 +137,7 @@ class StoppedFlightInfoElement {
 
   createStoppedFlightInfo() {
     this.stoppedFlightInfo = new StoppedFlightInfo();
-    for (var propName in this.stoppedFlightInfo) {
+    for (let propName in this.stoppedFlightInfo) {
       // this.propName 存的值是选择器
       let selector = this[propName];
       // 用selector到this.root中去找，返回的就是航班的信息

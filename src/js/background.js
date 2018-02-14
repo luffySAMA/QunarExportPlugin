@@ -3,9 +3,9 @@ chrome.runtime.onInstalled.addListener(() => {
     chrome.declarativeContent.onPageChanged.addRules([
       {
         conditions: [
-          // 只有打开去哪儿才显示pageAction
+          // 只有打开携程才显示pageAction
           new chrome.declarativeContent.PageStateMatcher({
-            pageUrl: { urlContains: 'qunar.com' }
+            pageUrl: { urlContains: 'ctrip.com' }
           })
         ],
         actions: [new chrome.declarativeContent.ShowPageAction()]

@@ -13,8 +13,16 @@
   },
   "content_scripts": [
     {
-      "matches": ["http://*.qunar.com/*", "https://*.qunar.com/*"],
-      "js": ["js/FileSaver.min.js", "js/flight-info.js", "js/flight-info-element.js", "js/content-script.js"]
+      "matches": ["http://*.qunar.com/*", "https://*.qunar.com/*", "http://flights.ctrip.com/*"],
+      "js": [
+        "js/FileSaver.min.js",
+        "js/flight/flight-info.js",
+        "js/flight/flight-creator.js",
+        "js/flight/direct-flight-creator.js",
+        "js/flight/stop-flight-creator.js",
+        "js/flight/international-flight-creator.js",
+        "js/main.js"
+      ]
     }
   ],
   "manifest_version": 2

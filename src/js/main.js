@@ -24,39 +24,29 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
  * 从输入框中查询起飞机场
  */
 function getFromAirport() {
-  return document.querySelectorAll('.serTxt')[0].value;
+  return document.querySelectorAll('#DCityName1')[0].value;
 }
 /**
  * 从输入框中查询目的机场
  */
 function getToAirport() {
-  return document.querySelectorAll('.serTxt')[1].value;
+  return document.querySelectorAll('#ACityName1')[0].value;
 }
 /**
  * 从输入框中查询起飞日期
  */
 function getFlightDate() {
-  return document.querySelectorAll('.serTxt')[2].value;
+  return document.querySelectorAll('#DDate1')[0].value;
 }
 /**
- * 从页面获取所有的航班信息（一页最多20条）
+ * 从页面获取所有的航班信息
  *
  * 返回FlightInfo的数组
  */
 function getFlightInfo() {
   let resultFlights = [];
-  document.querySelectorAll('.b-airfly').forEach(flightDiv => {
-    let flight = new FlightInfoElement(flightDiv).flightInfo;
-    let mgbts = flightDiv.querySelectorAll('.trans .mgbt');
-    mgbts.forEach(div => {
-      if (div.innerHTML.indexOf('中转') >= 0) {
-        let middleFlight = new MiddleFlightInfoElement(div).middleFlightInfo;
-        flight.middleFlight1 = middleFlight;
-      } else if (div.innerHTML.indexOf('经停' >= 0)) {
-        let stoppedFlight = new StoppedFlightInfoElement(div).stoppedFlightInfo;
-        flight.stoppedFlight = stoppedFlight;
-      }
-    });
+  document.querySelectorAll('.search_table_header .J_header_row').forEach(flightDiv => {
+    let flight = new DirectFlightCreator(flightDiv).flightInfo;
     resultFlights.push(flight);
   });
   return resultFlights;

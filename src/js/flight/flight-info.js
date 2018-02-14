@@ -21,7 +21,7 @@ class FlightInfo {
       this.stoppedFlight.stoppedCity
     },${this.middleFlight1.middleAirport},${this.middleFlight1.middleTime && this.middleFlight1.middleTime.split('~')[1]},,,${
       this.toAirport
-    },${this.endTime},${this.duration},${this.priceBusiness},${this.priceEconomy},`;
+    },${this.endTime},${this.duration},${this.priceBusiness},${this.priceEconomy},${this.onTime}`;
     return csv;
   }
 
@@ -70,6 +70,11 @@ class FlightInfo {
      * 头等舱价格
      */
     this.priceFirst = '';
+
+    /**
+     * 准点率
+     */
+    this.onTime = '';
 
     /**
      * 中转航班1
