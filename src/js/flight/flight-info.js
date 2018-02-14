@@ -6,22 +6,20 @@ class FlightInfo {
     this.init();
   }
   toCsv() {
+    console.log(this);
     if (this.middleFlight1 instanceof MiddleFlightInfo == false) {
       this.middleFlight1 = new MiddleFlightInfo();
     }
     if (this.middleFlight2 instanceof MiddleFlightInfo == false) {
       this.middleFlight2 = new MiddleFlightInfo();
     }
-    if (this.stoppedFlight instanceof StoppedFlightInfo == false) {
-      this.stoppedFlight = new StoppedFlightInfo();
-    }
     let csv = `
     ${this.airline},${this.flightNum},${this.airplane},${this.fromAirport},${this.startTime},${this.middleFlight1.middleAirport},${this
-      .middleFlight1.middleTime && this.middleFlight1.middleTime.split('~')[0]},,,${this.middleFlight1.duration},${
-      this.stoppedFlight.stoppedCity
-    },${this.middleFlight1.middleAirport},${this.middleFlight1.middleTime && this.middleFlight1.middleTime.split('~')[1]},,,${
-      this.toAirport
-    },${this.endTime},${this.duration},${this.priceBusiness},${this.priceEconomy},${this.onTime}`;
+      .middleFlight1.middleTime && this.middleFlight1.middleTime.split('~')[0]},,,${this.middleFlight1.duration},${this.stoppedCity},${
+      this.middleFlight1.middleAirport
+    },${this.middleFlight1.middleTime && this.middleFlight1.middleTime.split('~')[1]},,,${this.toAirport},${this.endTime},${
+      this.duration
+    },${this.priceBusiness},${this.priceEconomy},${this.onTime}`;
     return csv;
   }
 
@@ -77,6 +75,11 @@ class FlightInfo {
     this.onTime = '';
 
     /**
+     * 经停
+     */
+    this.stoppedCity = '';
+
+    /**
      * 中转航班1
      */
     this.middleFlight1 = new MiddleFlightInfo();
@@ -85,11 +88,6 @@ class FlightInfo {
      * 中转航班2
      */
     this.middleFlight2 = new MiddleFlightInfo();
-
-    /**
-     * 经停
-     */
-    this.stoppedFlight = new StoppedFlightInfo();
   }
 }
 class MiddleFlightInfo {
@@ -118,33 +116,5 @@ class MiddleFlightInfo {
      * 中转结束时间（即下一航班的起飞时间）
      */
     this.middleEndTime = '';
-  }
-}
-class StoppedFlightInfo {
-  constructor() {
-    /**
-     * 经停城市
-     */
-    this.stoppedCity = '';
-    /**
-     * 经停机场
-     */
-    this.stoppedAirport = '';
-    /**
-     * 经停航班
-     */
-    this.stoppedFlightNum = '';
-    /**
-     * 经停停留时间
-     */
-    this.stoppedTime = '';
-    /**
-     * 经停起始时间
-     */
-    this.stoppedStartTime = '';
-    /**
-     * 经停结束时间
-     */
-    this.stoppedEndTime = '';
   }
 }

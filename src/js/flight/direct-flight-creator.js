@@ -41,7 +41,7 @@ class DirectFlightCreator {
     /**
      * 机型
      */
-    this.airplane = '.logo span[data-bit="FlightType"]';
+    this.airplane = '.logo .craft';
     /**
      * 计划起飞时间
      */
@@ -92,6 +92,14 @@ class DirectFlightCreator {
      * 准点率
      */
     this.onTime = '.service span[data-bit="OnTimeRate"]';
+    /**
+     * 经停
+     */
+    this.stoppedCity = function(node) {
+      let temp = querySelector(node, '.stopover .low_text');
+      // 去掉<br>
+      return temp.substring(0, temp.length - 4);
+    };
   }
 }
 /**
