@@ -17,7 +17,7 @@
       "js": [
         "js/FileSaver.min.js",
         "js/flight/flight-info.js",
-        "js/flight/flight-creator.js",
+        "js/flight/query-selector.js",
         "js/flight/direct-flight-creator.js",
         "js/flight/stop-flight-creator.js",
         "js/flight/international-flight-creator.js",

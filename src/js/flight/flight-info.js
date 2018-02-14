@@ -14,12 +14,9 @@ class FlightInfo {
       this.middleFlight2 = new MiddleFlightInfo();
     }
     let csv = `
-    ${this.airline},${this.flightNum},${this.airplane},${this.fromAirport},${this.startTime},${this.middleFlight1.middleAirport},${this
-      .middleFlight1.middleTime && this.middleFlight1.middleTime.split('~')[0]},,,${this.middleFlight1.duration},${this.stoppedCity},${
-      this.middleFlight1.middleAirport
-    },${this.middleFlight1.middleTime && this.middleFlight1.middleTime.split('~')[1]},,,${this.toAirport},${this.endTime},${
-      this.duration
-    },${this.priceBusiness},${this.priceEconomy},${this.onTime}`;
+    ${this.airline},${this.flightNum},${this.airplane},${this.fromAirport},${this.startTime},,,,,${this.stopTime},${this.stoppedCity},,,,,${
+      this.toAirport
+    },${this.endTime},${this.duration},${this.priceBusiness},${this.priceEconomy},${this.onTime}`;
     return csv;
   }
 
@@ -73,6 +70,11 @@ class FlightInfo {
      * 准点率
      */
     this.onTime = '';
+
+    /**
+     * 中转停留时间
+     */
+    this.stopTime = '';
 
     /**
      * 经停

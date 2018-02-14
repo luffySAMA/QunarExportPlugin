@@ -45,8 +45,19 @@ function getFlightDate() {
  */
 function getFlightInfo() {
   let resultFlights = [];
+  // 查找国内直飞
   document.querySelectorAll('.search_table_header .J_header_row').forEach(flightDiv => {
     let flight = new DirectFlightCreator(flightDiv).flightInfo;
+    resultFlights.push(flight);
+  });
+  // 查找国内中转
+  document.querySelectorAll('.search_transfer_header.J_header_row.J_header_wrap').forEach(flightDiv => {
+    let flight = new StopFlightCreator(flightDiv).flightInfo;
+    resultFlights.push(flight);
+  });
+  // 查找国际航班
+  document.querySelectorAll('.flight-item').forEach(flightDiv => {
+    let flight = new internationalFlight(flightDiv).flightInfo;
     resultFlights.push(flight);
   });
   return resultFlights;
