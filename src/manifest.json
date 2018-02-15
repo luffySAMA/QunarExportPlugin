@@ -1,10 +1,10 @@
 {
-  "name": "去哪儿航班导出插件",
-  "description": "导出去哪儿网的航班查询结果",
+  "name": "携程航班导出插件",
+  "description": "导出携程网的航班查询结果",
   "version": "1.0",
   "permissions": ["declarativeContent"],
   "page_action": {
-    "default_icon": "assets/qunar.png",
+    "default_icon": "assets/logo.jpg",
     "default_title": "导出结果"
   },
   "background": {
@@ -13,7 +13,7 @@
   },
   "content_scripts": [
     {
-      "matches": ["http://*.qunar.com/*", "https://*.qunar.com/*", "http://flights.ctrip.com/*"],
+      "matches": ["http://flights.ctrip.com/*"],
       "js": [
         "js/FileSaver.min.js",
         "js/flight/flight-info.js",
