@@ -4,7 +4,7 @@
   "version": "1.0",
   "permissions": ["declarativeContent"],
   "page_action": {
-    "default_icon": "assets/logo.jpg",
+    "default_icon": "assets/logo.png",
     "default_title": "导出结果"
   },
   "background": {
