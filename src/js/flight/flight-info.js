@@ -6,17 +6,14 @@ class FlightInfo {
     this.init();
   }
   toCsv() {
-    console.log(this);
-    if (this.middleFlight1 instanceof MiddleFlightInfo == false) {
-      this.middleFlight1 = new MiddleFlightInfo();
-    }
-    if (this.middleFlight2 instanceof MiddleFlightInfo == false) {
-      this.middleFlight2 = new MiddleFlightInfo();
-    }
     let csv = `
-    ${this.airline},${this.flightNum},${this.airplane},${this.fromAirport},${this.startTime},,,,,${this.stopTime},${this.stoppedCity},,,,,${
-      this.toAirport
-    },${this.endTime},${this.duration},${this.priceBusiness},${this.priceEconomy},${this.onTime}`;
+    ${this.airline},${this.flightNum},${this.airplane},${this.fromAirport},${this.startTime},${this.flight1ArriveAddress},${
+      this.flight1ArriveTime
+    },${this.flight1Duration},${this.flight1OnTime},${this.stopTime},${this.stoppedCity},${this.flight2ArriveAddress},${
+      this.flight2ArriveTime
+    },${this.flight2Duration},${this.flight2OnTime},${this.toAirport},${this.endTime},${this.duration},${this.priceBusiness},${
+      this.priceEconomy
+    },${this.onTime}`;
     return csv;
   }
 
@@ -82,41 +79,37 @@ class FlightInfo {
     this.stoppedCity = '';
 
     /**
-     * 中转航班1
+     * 第一航班到达时间
      */
-    this.middleFlight1 = new MiddleFlightInfo();
+    this.flight1ArriveTime = '';
+    /**
+     * 第一航班到达机场
+     */
+    this.flight1ArriveAddress = '';
+    /**
+     * 第一航班准点率
+     */
+    this.flight1OnTime = '';
+    /**
+     * 第一航班飞行时间
+     */
+    this.flight1Duration = '';
 
     /**
-     * 中转航班2
+     * 第二航班到达时间
      */
-    this.middleFlight2 = new MiddleFlightInfo();
-  }
-}
-class MiddleFlightInfo {
-  constructor() {
+    this.flight2ArriveTime = '';
     /**
-     * 中转城市
+     * 第二航班到达机场
      */
-    this.middleCity = '';
+    this.flight2ArriveAddress = '';
     /**
-     * 中转机场
+     * 第二航班准点率
      */
-    this.middleAirport = '';
+    this.flight2OnTime = '';
     /**
-     * 中转时间(20:25~06:15)
+     * 第二航班飞行时间
      */
-    this.middleTime = '';
-    /**
-     * 中转停留时间(9小时50分钟)
-     */
-    this.duration = '';
-    /**
-     * 中转起始时间（即上一航班的到达时间）
-     */
-    this.middleStartTime = '';
-    /**
-     * 中转结束时间（即下一航班的起飞时间）
-     */
-    this.middleEndTime = '';
+    this.flight2Duration = '';
   }
 }

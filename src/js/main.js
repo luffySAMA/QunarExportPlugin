@@ -24,19 +24,37 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
  * 从输入框中查询起飞机场
  */
 function getFromAirport() {
-  return document.querySelectorAll('#DCityName1')[0].value;
+  if (window.location.href.indexOf('flights.ctrip.com/international/') != -1) {
+    // 国际航班
+    return document.querySelectorAll('#homeCity')[0].value;
+  } else if (window.location.href.indexOf('flights.ctrip.com/booking/') != -1) {
+    // 国内航班
+    return document.querySelectorAll('#DCityName1')[0].value;
+  }
 }
 /**
  * 从输入框中查询目的机场
  */
 function getToAirport() {
-  return document.querySelectorAll('#ACityName1')[0].value;
+  if (window.location.href.indexOf('flights.ctrip.com/international/') != -1) {
+    // 国际航班
+    return document.querySelectorAll('#destCity')[0].value;
+  } else if (window.location.href.indexOf('flights.ctrip.com/booking/') != -1) {
+    // 国内航班
+    return document.querySelectorAll('#ACityName1')[0].value;
+  }
 }
 /**
  * 从输入框中查询起飞日期
  */
 function getFlightDate() {
-  return document.querySelectorAll('#DDate1')[0].value;
+  if (window.location.href.indexOf('flights.ctrip.com/international/') != -1) {
+    // 国际航班
+    return document.querySelectorAll('#DDate')[0].value;
+  } else if (window.location.href.indexOf('flights.ctrip.com/booking/') != -1) {
+    // 国内航班
+    return document.querySelectorAll('#DDate1')[0].value;
+  }
 }
 /**
  * 从页面获取所有的航班信息
@@ -57,7 +75,7 @@ function getFlightInfo() {
   });
   // 查找国际航班
   document.querySelectorAll('.flight-item').forEach(flightDiv => {
-    let flight = new internationalFlight(flightDiv).flightInfo;
+    let flight = new InternationalFlightCreator(flightDiv).flightInfo;
     resultFlights.push(flight);
   });
   return resultFlights;
