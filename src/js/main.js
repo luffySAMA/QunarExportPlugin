@@ -1,25 +1,46 @@
 // 接收来自后台的消息
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
   if (request.action == 'download') {
-    // 起飞机场
-    let fromAirport = getFromAirport();
-    // 目的机场
-    let toAirport = getToAirport();
-    // 日期
-    let flightDate = getFlightDate();
-
-    // 文件名
-    let fileName = `${fromAirport}-${toAirport}-${flightDate}.csv`;
-    // 文件内容
-    let csvContent = `航空公司,航班编号,机型,起飞机场,计划起飞时间,是否中转/经停,,,,,,,,,,到达机场,计划到达时间,总飞行时长,商务票价（元）,经济票价（元）,总到达准点率
-,,,,,第一航段到达机场,第一航段到达时间,第一航段飞行时间,第一航段准点率,中转停留时间,经停机场,第二航段起飞机场,第二航段起飞时间,第二航段飞行时间,第二航段准点率`;
-    getFlightInfo().forEach(flight => {
-      csvContent += FlightInfo.prototype.toCsv.apply(flight);
-    });
-    download(fileName, csvContent);
+    if (window.location.href.indexOf('flights.ctrip.com/international/') != -1) {
+      // 国际航班
+      document.querySelectorAll('.flight-action-more a').forEach(linkMore => {
+        linkMore.click();
+      });
+    }
+    if (window.location.href.indexOf('flights.ctrip.com/booking/') != -1) {
+      // 国内航班
+      window.scrollTo(0, 9999);
+    }
+    setTimeout(() => {
+      let fileName = getFileName();
+      let csv = getCsv();
+      download(fileName, csv);
+    }, 2000);
   }
 });
 
+function getFileName() {
+  // 起飞机场
+  let fromAirport = getFromAirport();
+  // 目的机场
+  let toAirport = getToAirport();
+  // 日期
+  let flightDate = getFlightDate();
+
+  // 文件名
+  let fileName = `${fromAirport}-${toAirport}-${flightDate}.csv`;
+  return fileName;
+}
+
+function getCsv() {
+  // 文件内容
+  let csv = `航空公司,航班编号,机型,起飞机场,计划起飞时间,是否中转/经停,,,,,,,,,,到达机场,计划到达时间,总飞行时长,商务票价（元）,经济票价（元）,总到达准点率
+,,,,,第一航段到达机场,第一航段到达时间,第一航段飞行时间,第一航段准点率,中转停留时间,经停机场,第二航段起飞机场,第二航段起飞时间,第二航段飞行时间,第二航段准点率`;
+  getFlightInfo().forEach(flight => {
+    csv += FlightInfo.prototype.toCsv.apply(flight);
+  });
+  return csv;
+}
 /**
  * 从输入框中查询起飞机场
  */

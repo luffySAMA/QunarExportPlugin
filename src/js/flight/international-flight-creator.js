@@ -38,17 +38,33 @@ class InternationalFlightCreator {
     /**
      * 起飞机场
      */
-    this.fromAirport = [
-      '.flight-detail-expend .flight-detail-section:first-child .section-airport',
-      '.flight-detail-expend .flight-detail-section:first-child .section-terminal'
-    ];
+    this.fromAirport = function(node) {
+      let selector = [
+        '.flight-detail-expend .flight-detail-section:first-child .section-airport',
+        '.flight-detail-expend .flight-detail-section:first-child .section-terminal'
+      ];
+      let airport = querySelector(node, selector);
+      if (airport.indexOf('<') > 0) {
+        return airport.substring(0, airport.indexOf('<'));
+      } else {
+        return airport;
+      }
+    };
     /**
      * 到达机场
      */
-    this.toAirport = [
-      '.flight-detail-expend .flight-detail-section:last-child .section-airport',
-      '.flight-detail-expend .flight-detail-section:last-child .section-terminal'
-    ];
+    this.toAirport = function(node) {
+      let selector = [
+        '.flight-detail-expend .flight-detail-section:last-child .section-airport',
+        '.flight-detail-expend .flight-detail-section:last-child .section-terminal'
+      ];
+      let airport = querySelector(node, selector);
+      if (airport.indexOf('<') > 0) {
+        return airport.substring(0, airport.indexOf('<'));
+      } else {
+        return airport;
+      }
+    };
     /**
      * 航空公司
      */
@@ -137,7 +153,15 @@ class InternationalFlightCreator {
     /**
      * 第一航班到达机场
      */
-    this.flight1ArriveAddress = '.flight-detail-expend .flight-detail-section:first-child p:last-child .section-airport';
+    this.flight1ArriveAddress = function(node) {
+      let selector = '.flight-detail-expend .flight-detail-section:first-child p:last-child .section-airport';
+      let airport = querySelector(node, selector);
+      if (airport.indexOf('<') > 0) {
+        return airport.substring(0, airport.indexOf('<'));
+      } else {
+        return airport;
+      }
+    };
     /**
      * 第一航班准点率
      */
@@ -157,7 +181,15 @@ class InternationalFlightCreator {
     /**
      * 第二航班到达机场
      */
-    this.flight2ArriveAddress = '.flight-detail-expend .flight-detail-section:last-child p:last-child .section-airport';
+    this.flight2ArriveAddress = function(node) {
+      let selector = '.flight-detail-expend .flight-detail-section:last-child p:last-child .section-airport';
+      let airport = querySelector(node, selector);
+      if (airport.indexOf('<') > 0) {
+        return airport.substring(0, airport.indexOf('<'));
+      } else {
+        return airport;
+      }
+    };
     /**
      * 第二航班准点率
      */

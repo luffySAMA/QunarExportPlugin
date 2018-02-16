@@ -13,7 +13,7 @@
   },
   "content_scripts": [
     {
-      "matches": ["http://flights.ctrip.com/*"],
+      "matches": ["http://flights.ctrip.com/*", "https://flights.ctrip.com/*"],
       "js": [
         "js/FileSaver.min.js",
         "js/flight/flight-info.js",
