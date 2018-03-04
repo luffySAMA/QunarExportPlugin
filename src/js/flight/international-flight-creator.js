@@ -23,6 +23,10 @@ class InternationalFlightCreator {
       this.flight2ArriveTime = '';
       this.flight2Duration = '';
       this.flight2OnTime = '';
+      this.flight3ArriveAddress = '';
+      this.flight3ArriveTime = '';
+      this.flight3Duration = '';
+      this.flight3OnTime = '';
       this.stopTime = '';
       this.stoppedCity = '';
     }
@@ -40,8 +44,8 @@ class InternationalFlightCreator {
      */
     this.fromAirport = function(node) {
       let selector = [
-        '.flight-detail-expend .flight-detail-section:first-child .section-airport',
-        '.flight-detail-expend .flight-detail-section:first-child .section-terminal'
+        '.flight-detail-expend .flight-detail-section:nth-child(1) .section-airport',
+        '.flight-detail-expend .flight-detail-section:nth-child(1) .section-terminal'
       ];
       let airport = querySelector(node, selector);
       if (airport.indexOf('<') > 0) {
@@ -55,8 +59,8 @@ class InternationalFlightCreator {
      */
     this.toAirport = function(node) {
       let selector = [
-        '.flight-detail-expend .flight-detail-section:last-child .section-airport',
-        '.flight-detail-expend .flight-detail-section:last-child .section-terminal'
+        '.flight-detail-expend .flight-detail-section:nth-child(3) .section-airport',
+        '.flight-detail-expend .flight-detail-section:nth-child(3) .section-terminal'
       ];
       let airport = querySelector(node, selector);
       if (airport.indexOf('<') > 0) {
@@ -79,24 +83,24 @@ class InternationalFlightCreator {
     /**
      * 航班编号
      */
-    this.flightNum = '.flight-detail-expend .flight-detail-section:first-child .flight-No';
+    this.flightNum = '.flight-detail-expend .flight-detail-section:nth-child(1) .flight-No';
     /**
      * 机型
      */
-    this.airplane = '.flight-detail-expend .flight-detail-section:first-child .abbr';
+    this.airplane = '.flight-detail-expend .flight-detail-section:nth-child(1) .abbr';
     /**
      * 计划起飞时间
      */
     this.startTime = [
-      '.flight-detail-expend .flight-detail-section:first-child .section-date',
-      '.flight-detail-expend .flight-detail-section:first-child .section-time'
+      '.flight-detail-expend .flight-detail-section:nth-child(1) .section-date',
+      '.flight-detail-expend .flight-detail-section:nth-child(1) .section-time'
     ];
     /**
      * 计划到达时间
      */
     this.endTime = [
-      '.flight-detail-expend .flight-detail-section:last-child .section-date',
-      '.flight-detail-expend .flight-detail-section:last-child .section-time'
+      '.flight-detail-expend .flight-detail-section:nth-child(3) .section-date',
+      '.flight-detail-expend .flight-detail-section:nth-child(3) .section-time'
     ];
     /**
      * 总飞行时长
@@ -147,14 +151,14 @@ class InternationalFlightCreator {
      * 第一航班到达时间
      */
     this.flight1ArriveTime = [
-      '.flight-detail-expend .flight-detail-section:first-child p:last-child .section-date',
-      '.flight-detail-expend .flight-detail-section:first-child p:last-child .section-time'
+      '.flight-detail-expend .flight-detail-section:nth-child(1) p:last-child .section-date',
+      '.flight-detail-expend .flight-detail-section:nth-child(1) p:last-child .section-time'
     ];
     /**
      * 第一航班到达机场
      */
     this.flight1ArriveAddress = function(node) {
-      let selector = '.flight-detail-expend .flight-detail-section:first-child p:last-child .section-airport';
+      let selector = '.flight-detail-expend .flight-detail-section:nth-child(1) p:last-child .section-airport';
       let airport = querySelector(node, selector);
       if (airport.indexOf('<') > 0) {
         return airport.substring(0, airport.indexOf('<'));
@@ -165,24 +169,24 @@ class InternationalFlightCreator {
     /**
      * 第一航班准点率
      */
-    this.flight1OnTime = '.flight-detail-expend .flight-detail-section:first-child .section-terminal .section-duration';
+    this.flight1OnTime = '.flight-detail-expend .flight-detail-section:nth-child(1) .section-terminal .section-duration';
     /**
      * 第一航班飞行时间
      */
-    this.flight1Duration = '.flight-detail-expend .flight-detail-section:first-child p.section-flight-base+p .section-duration';
+    this.flight1Duration = '.flight-detail-expend .flight-detail-section:nth-child(1) p.section-flight-base+p .section-duration';
 
     /**
      * 第二航班到达时间
      */
     this.flight2ArriveTime = [
-      '.flight-detail-expend .flight-detail-section:last-child p:last-child .section-date',
-      '.flight-detail-expend .flight-detail-section:last-child p:last-child .section-time'
+      '.flight-detail-expend .flight-detail-section:nth-child(3) p:last-child .section-date',
+      '.flight-detail-expend .flight-detail-section:nth-child(3) p:last-child .section-time'
     ];
     /**
      * 第二航班到达机场
      */
     this.flight2ArriveAddress = function(node) {
-      let selector = '.flight-detail-expend .flight-detail-section:last-child p:last-child .section-airport';
+      let selector = '.flight-detail-expend .flight-detail-section:nth-child(3) p:last-child .section-airport';
       let airport = querySelector(node, selector);
       if (airport.indexOf('<') > 0) {
         return airport.substring(0, airport.indexOf('<'));
@@ -193,10 +197,60 @@ class InternationalFlightCreator {
     /**
      * 第二航班准点率
      */
-    this.flight2OnTime = '.flight-detail-expend .flight-detail-section:last-child .section-terminal .section-duration';
+    this.flight2OnTime = '.flight-detail-expend .flight-detail-section:nth-child(3) .section-terminal .section-duration';
     /**
      * 第二航班飞行时间
      */
-    this.flight2Duration = '.flight-detail-expend .flight-detail-section:last-child p.section-flight-base+p .section-duration';
+    this.flight2Duration = '.flight-detail-expend .flight-detail-section:nth-child(3) p.section-flight-base+p .section-duration';
+
+    /**
+     * 经停
+     */
+    this.stoppedCity2 = function(node) {
+      if (node.querySelectorAll('.section-stop').length > 1) {
+        return '中转' + querySelector(node.querySelectorAll('.section-stop')[1], '.in strong');
+      } else {
+        return '';
+      }
+    };
+
+    /**
+     * 中转停留时间
+     */
+    this.stopTime2 = function(node) {
+      if (node.querySelectorAll('.section-stop').length > 1) {
+        let temp = querySelector(node.querySelectorAll('.section-stop')[1], '.in');
+        return temp.substring(temp.lastIndexOf('：') + 1);
+      } else {
+        return '';
+      }
+    };
+    /**
+     * 第三航班到达时间
+     */
+    this.flight3ArriveTime = [
+      '.flight-detail-expend .flight-detail-section:nth-child(5) p:last-child .section-date',
+      '.flight-detail-expend .flight-detail-section:nth-child(5) p:last-child .section-time'
+    ];
+    /**
+     * 第三航班到达机场
+     */
+    this.flight3ArriveAddress = function(node) {
+      let selector = '.flight-detail-expend .flight-detail-section:nth-child(5) p:last-child .section-airport';
+      let airport = querySelector(node, selector);
+      if (airport.indexOf('<') > 0) {
+        return airport.substring(0, airport.indexOf('<'));
+      } else {
+        return airport;
+      }
+    };
+    /**
+     * 第三航班准点率
+     */
+    this.flight3OnTime = '.flight-detail-expend .flight-detail-section:nth-child(5) .section-terminal .section-duration';
+    /**
+     * 第三航班飞行时间
+     */
+    this.flight3Duration = '.flight-detail-expend .flight-detail-section:nth-child(5) p.section-flight-base+p .section-duration';
   }
 }

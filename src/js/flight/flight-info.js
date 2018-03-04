@@ -11,9 +11,9 @@ class FlightInfo {
       this.flight1ArriveTime
     },${this.flight1Duration},${this.flight1OnTime},${this.stopTime},${this.stoppedCity},${this.flight2ArriveAddress},${
       this.flight2ArriveTime
-    },${this.flight2Duration},${this.flight2OnTime},${this.toAirport},${this.endTime},${this.duration},${this.priceBusiness},${
-      this.priceEconomy
-    },${this.onTime}`;
+    },${this.flight2Duration},${this.flight2OnTime},${this.stopTime2},${this.stoppedCity2},${this.flight3ArriveAddress},${
+      this.flight3ArriveTime
+    },${this.flight3Duration},${this.flight3OnTime},${this.toAirport},${this.endTime},${this.duration},${this.priceEconomy},${this.onTime}`;
     return csv;
   }
 
@@ -111,5 +111,30 @@ class FlightInfo {
      * 第二航班飞行时间
      */
     this.flight2Duration = '';
+    /**
+     * 第二航班中转停留时间
+     */
+    this.stopTime2 = '';
+
+    /**
+     * 第二航班经停
+     */
+    this.stoppedCity2 = '';
+    /**
+     * 第三航班到达时间
+     */
+    this.flight3ArriveTime = '';
+    /**
+     * 第三航班到达机场
+     */
+    this.flight3ArriveAddress = '';
+    /**
+     * 第三航班准点率
+     */
+    this.flight3OnTime = '';
+    /**
+     * 第三航班飞行时间
+     */
+    this.flight3Duration = '';
   }
 }
