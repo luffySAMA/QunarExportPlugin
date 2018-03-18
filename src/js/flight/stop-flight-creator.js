@@ -5,7 +5,7 @@ class StopFlightCreator {
   constructor(root, stopDiv) {
     this.init();
     if (root == undefined || stopDiv == undefined) {
-      log('请先把鼠标放在中转航班上，然后再下载');
+      toastr.warning('请先把鼠标放在中转航班上，然后再下载');
       return;
     }
     this.root = root;

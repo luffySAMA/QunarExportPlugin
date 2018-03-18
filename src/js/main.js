@@ -10,12 +10,12 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
       } else if (value == 'C_F' || value == 'C' || value == 'F') {
         seat = '商务票';
       }
-      log(`开始下载国际航班${seat}...`);
+      toastr.info(`开始下载国际航班${seat}...`);
       window.scrollTo(0, 9999);
       document.querySelectorAll('.flight-action-more a').forEach(linkMore => {
         linkMore.click();
       });
-      log(`请等待${seat}数据加载完后重新点击下载按钮...`);
+      toastr.info(`请等待${seat}数据加载完后重新点击下载按钮...`);
       setTimeout(() => {
         let fileName = getFileName(seat);
         let csv = getCsv(seat);
@@ -39,14 +39,14 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
         let fileName = getFileName('经济票');
         let csv = getCsv('经济票');
         download(fileName, csv);
-        log(`开始下载国内航班经济票...`);
+        toastr.info(`开始下载国内航班经济票...`);
         document.querySelectorAll("#J_flightFilter input[name='filter_Classes']")[1].click();
         // document.querySelector('.btn_book.J_expandBtn').click();
         window.scrollTo(0, 9999);
         setTimeout(() => {
           let fileName = getFileName('商务票');
           let csv = getCsv('商务票');
-          log(`开始下载国内航班商务票...`);
+          toastr.info(`开始下载国内航班商务票...`);
           download(fileName, csv);
         }, 1000);
       }, 1000);
@@ -151,7 +151,7 @@ function download(fileName, content) {
   let blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
   saveAs(blob, fileName);
 }
-function log(title, message) {
+function sendMessage(title, message) {
   chrome.extension.sendMessage({ type: 'notification', title: title, message: message }, function(response) {
     console.log('收到来自后台的回复：' + response);
   });
