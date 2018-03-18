@@ -24,3 +24,13 @@ chrome.pageAction.onClicked.addListener(() => {
     });
   });
 });
+
+chrome.extension.onMessage.addListener(function(request, sender, sendResponse) {
+  console.log(request);
+  if (request.type == 'notification') {
+    var notification = webkitNotifications.createNotification('assets/logo.png', request.title, request.message);
+    notification.show();
+
+    sendResponse('ok');
+  }
+});
